@@ -1,13 +1,15 @@
 ﻿namespace POO_CSharp_P12.Entities
 {
-    internal class SavingsAccount : Account
+    //classe selada
+    //class SavingsAccount : Account
+    class SavingsAccount : Account
     {
         public double InterestRate { get; set; }
 
         public SavingsAccount() { }
 
         public SavingsAccount(int number, string holder, double balance, double interestRate)
-            : base (number, holder, balance)
+            : base(number, holder, balance)
         {
             InterestRate = interestRate;
         }
@@ -16,7 +18,8 @@
         {
             Balance += Balance * InterestRate;
         }
-
+        //método selado
+        //public sealed override void Withdraw(double amount)
         public override void Withdraw(double amount)
         {
             base.Withdraw(amount);
