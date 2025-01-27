@@ -1,4 +1,5 @@
 ﻿using POO_CSharp_P12.Entities;
+using System.Globalization;
 
 namespace POO_CSharp_P11
 {
@@ -9,14 +10,47 @@ namespace POO_CSharp_P11
             Console.WriteLine();
             Console.WriteLine("------------------------------------------------------");
             Console.WriteLine();
+            Console.WriteLine("Classes abstratas");
+
+            List<Account> list = new List<Account>();
+
+            list.Add(new SavingsAccount(1005, "Junior", 500.0, 0.01));
+            list.Add(new BusinessAccount(1006, "Maria", 500.0, 400.0));
+            list.Add(new SavingsAccount(1007, "Bob", 500.0, 0.01));
+            list.Add(new BusinessAccount(1008, "Ana", 500.0, 500.0));
+
+            double sum = 0.0;
+            foreach (Account acc in list)
+            {
+                sum += acc.Balance;
+            }
+
+            Console.WriteLine("Total balance: " + sum.ToString("F2", CultureInfo.InvariantCulture));
+
+            foreach (Account acc in list)
+            {
+                acc.Withdraw(10.0);
+            }
+
+            foreach (Account acc in list)
+            {
+                Console.WriteLine("Updated balance for account "
+                    + acc.Number
+                    + ": "
+                    + acc.Balance.ToString("F2", CultureInfo.InvariantCulture));
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("------------------------------------------------------");
+            Console.WriteLine();
             Console.WriteLine("Sobreposição, palavras virtual, override e base");
-            Account acc6 = new Account(1001, "Alex", 500.0);
+           // Account acc6 = new Account(1001, "Alex", 500.0);
             Account acc7 = new SavingsAccount(1004, "Anna", 500.0, 1.01);
 
-            acc6.Withdraw(10.0);
+           // acc6.Withdraw(10.0);
             acc7.Withdraw(10.0);
 
-            Console.WriteLine(acc6.Balance);
+           // Console.WriteLine(acc6.Balance);
             Console.WriteLine(acc7.Balance);
 
             Console.WriteLine();
@@ -24,18 +58,18 @@ namespace POO_CSharp_P11
             Console.WriteLine();
             Console.WriteLine("Exemplo Upcasting e downcasting");
 
-            Account acc = new Account(1001, "Alex", 0.0);
+            //Account acc = new Account(1001, "Alex", 0.0);
             BusinessAccount bacc = new BusinessAccount(1002, "Maria", 0.0, 500.0);
-            Console.WriteLine(acc.ToString());
+            //Console.WriteLine(acc.ToString());
             Console.WriteLine(bacc);
             // UPCASTING
             Console.WriteLine("UPCASTING");
             Account acc1 = bacc;
             Account acc2 = new BusinessAccount(1003, "Bob", 0.0, 200.0);
             Account acc3 = new SavingsAccount(1004, "Anna", 0.0, 0.01);
-            Console.WriteLine(acc1);
-            Console.WriteLine(acc2);
-            Console.WriteLine(acc3);
+            Console.WriteLine(acc1.Balance);
+            Console.WriteLine(acc2.Balance);
+            Console.WriteLine(acc3.Balance);
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("----------------------------");
